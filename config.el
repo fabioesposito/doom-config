@@ -69,9 +69,9 @@
       :v "K" ":m '<-2<CR>gv=gv")
 
 ;; LSP signature help (nvim <C-k>); remapped off window-nav to C-c C-k
-(map! :after lsp-mode
-      :n "C-c C-k" #'lsp-signature
-      :i "C-c C-k" #'lsp-signature)
+(map! :after eglot
+      :n "C-c C-k" #'eglot-signature-help
+      :i "C-c C-k" #'eglot-signature-help)
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -104,3 +104,12 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; Ensure LSP language servers are discoverable by eglot regardless of how
+;; Emacs is launched (these dirs may not be on PATH in all environments).
+(dolist (dir (list (expand-file-name "~/.local/bin")
+                   (expand-file-name "~/go/bin")
+                   (expand-file-name "~/.config/emacs/bin")))
+  (when (file-directory-p dir)
+    (add-to-list 'exec-path dir)))
+
