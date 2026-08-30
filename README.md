@@ -1,13 +1,8 @@
 # Emacs config
 
-Evil (vim) keybindings throughout. Two setups available:
-
-- **Vanilla** (`init.el`) — standalone Emacs config with `use-package`
-- **Doom** (`config.el` + `packages.el`) — Doom Emacs config (legacy)
+Vim-like setup with Evil keybindings throughout.
 
 ## Install
-
-### Vanilla (recommended)
 
 Requires Emacs 29+.
 
@@ -17,75 +12,40 @@ git clone https://github.com/fabioesposito/doom-config.git ~/.emacs.d
 
 Launch Emacs — packages install automatically on first start via `use-package`.
 
-### Doom (legacy)
-
-```bash
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
-~/.emacs.d/bin/doom install
-
-git clone https://github.com/fabioesposito/doom-config.git ~/.config/doom
-~/.emacs.d/bin/doom sync
-```
-
----
-
-## Vanilla config (init.el)
-
-Migrated from Neovim (lazy.nvim + catppuccin).
-
 ## What's enabled
 
-- **LSP** (lsp-mode) with `+lsp` on: `go`, `javascript`/typescript, `lua`, `markdown`,
-  `terraform`, `sh`, `web`, `cc`, `python`. Also `docker`.
-- **Format-on-save** (`format +onsave`) via lsp-mode.
-- **Tree-sitter** highlighting.
-- **Theme**: catppuccin (mocha).
-- Completion: corfu + orderless + vertico. Git: magit + vc-gutter. UI: doom-modeline,
-  hl-todo, which-key, smartparens/surround, comment.
+- **Evil** — Vim keybindings
+- **which-key** — displays available key combinations
+- **Vertico** — vertical completion menus
+- **Orderless** — flexible fuzzy matching
+- **Consult** — fast searching and navigation
+- **Embark** — context-sensitive actions
+- **Marginalia** — richer minibuffer annotations
+- **Magit** — Git interface
+- **Projectile** — project navigation
+- **Org-mode** — structured notes and task management
+- **Savehist** — persist minibuffer history across sessions
 
-## Must install manually (in Emacs)
-
-`M-x lsp-install-server` for: `gopls`, `typescript-language-server`,
-`lua-language-server`, `marksman`, `terraform-ls`, `docker-ls`, `bash-language-server`.
-
-Formatters/linters (not managed by Doom — install via brew/mise): `gofumpt`,
-`goimports`, `prettier`, `stylua`, `golangci-lint`, `eslint_d`, `tflint`,
-`hadolint`, `markdownlint`.
-
-Reload config after edits: `SPC h r r`. After editing `init.el`/`packages.el`: `doom sync`.
-
-## Custom keybindings (added in config.el)
+## Keybindings
 
 | Key | Action |
 |-----|--------|
-| `C-h` / `C-j` / `C-k` / `C-l` | move to left / down / up / right window |
-| `v <` / `v >` | indent (keep visual selection) |
-| `v J` / `v K` | move selection down / up |
-| `C-c C-k` | LSP signature help |
+| `C-s` | `consult-line` (search in buffer) |
+| `C-x b` | `consult-buffer` (switch buffer) |
+| `C-x C-f` | `consult-find` (find file) |
+| `C-x g` | `magit-status` |
+| `M-g g` | `consult-goto-line` |
+| `M-g i` | `consult-imenu` |
+| `M-s r` | `consult-ripgrep` |
+| `M-s g` | `consult-grep` |
+| `C-.` | `embark-act` |
+| `M-.` | `embark-dwim` |
+| `C-c p` | Projectile prefix |
+| `C-c a` | `org-agenda` |
+| `C-c c` | `org-capture` |
 
-Note: `C-k` does window-up here; LSP signature help (was `C-k` in Neovim) is on `C-c C-k`.
+## Configuration
 
-## Neovim → Doom equivalents
+Edit `init.el` and restart Emacs (or `M-x eval-buffer`).
 
-| Neovim | Doom |
-|--------|------|
-| `<leader>w` save | `:w` / `SPC f s` |
-| `<leader>q` quit | `SPC q` (session prefix) |
-| `<leader>bn` / `bp` / `bD` | `SPC b n` / `b p` / `b d` |
-| `:Neotree` / `Oil` | `SPC .` find-file, `SPC f d` dired, or enable `neotree` |
-| Telescope `SPC ff/fg` | `SPC f f` / `SPC s g` (consult) |
-| LazyGit | magit: `SPC g g` |
-| Trouble | `SPC c l` (lsp diagnostics/trouble-style lists) |
-| Flash `s` | `SPC j` (evil-easymotion) / `SPC j j` (avy) |
-| Gitsigns hunk ops | `SPC g` (magit) + vc-gutter `SPC g h` hunks |
-| Todo comments | `SPC s t` (hl-todo search) / `SPC p s` |
-
-### Doom leader prefixes (cheat)
-
-- `SPC b` buffers · `SPC f` files/find · `SPC p` project · `SPC g` git (magit)
-- `SPC c` code/LSP · `SPC w` windows · `SPC q` quit/session · `SPC h` help
-- `SPC /` search · `SPC j` jump (avy/easymotion) · `SPC s` search/todo
-
-LSP actions live under `SPC c`: `SPC c a` code action, `SPC c r` rename,
-`SPC c d` line diagnostics, `SPC c l` (diagnostics), `gd`/`gD`/`gr`/`gi` jump,
-`K` hover, `[e` / `]e` next/prev error.
+Org files default to `~/org`. Change `org-agenda-files` in `init.el` to customize.
