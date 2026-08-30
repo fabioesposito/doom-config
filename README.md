@@ -25,6 +25,19 @@ Launch Emacs — packages install automatically on first start via `use-package`
 - **Projectile** — project navigation
 - **Org-mode** — structured notes and task management
 - **Savehist** — persist minibuffer history across sessions
+- **Eglot** — built-in LSP client, auto-starts for Go, TypeScript/JS, Elixir, Markdown, and Python
+
+## Language servers
+
+Eglot needs the matching language server on your `PATH`:
+
+| Language | Server |
+|----------|--------|
+| Go | `gopls` |
+| TypeScript / JavaScript | `typescript-language-server` |
+| Elixir | `language_server.sh` (elixir-ls) |
+| Markdown | `marksman` |
+| Python | `pylsp` (or `pyright-langserver`) |
 
 ## Keybindings
 
@@ -43,6 +56,33 @@ Launch Emacs — packages install automatically on first start via `use-package`
 | `C-c p` | Projectile prefix |
 | `C-c a` | `org-agenda` |
 | `C-c c` | `org-capture` |
+
+### LSP (Eglot) — Emacs prefix
+
+| Key | Action |
+|-----|--------|
+| `C-c l g` | go to definition |
+| `C-c l r` | find references |
+| `C-c l i` | find implementation |
+| `C-c l t` | find type definition |
+| `C-c l R` | rename |
+| `C-c l a` | code actions |
+| `C-c l =` | format buffer |
+| `C-c l h` | hover documentation |
+
+### LSP (Eglot) — Vim normal mode
+
+| Key | Action |
+|-----|--------|
+| `gd` | go to definition |
+| `gD` | find references |
+| `gI` | find implementation |
+| `gT` | find type definition |
+| `gR` | rename |
+| `ga` | code actions |
+| `g=` | format buffer |
+| `K` | hover documentation |
+| `[g` / `]g` | previous / next diagnostic |
 
 ## Configuration
 
