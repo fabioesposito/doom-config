@@ -86,6 +86,34 @@
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "CANCELLED(c)"))
         org-log-done 'time))
 
+;; ── Language major modes ───────────────────────────────────────────
+(use-package go-mode
+  :mode (("\\.go\\'" . go-mode)))
+
+(use-package typescript-mode
+  :mode (("\\.ts\\'" . typescript-mode)
+         ("\\.tsx\\'" . typescript-mode)))
+
+(use-package elixir-mode
+  :mode (("\\.ex\\'" . elixir-mode)
+         ("\\.exs\\'" . elixir-mode)))
+
+(use-package markdown-mode
+  :mode (("\\.md\\'" . markdown-mode)))
+
+;; ── Eglot ── built-in LSP client ───────────────────────────────────
+(use-package eglot
+  :ensure nil
+  :hook ((go-mode         . eglot-ensure)
+         (typescript-mode . eglot-ensure)
+         (elixir-mode     . eglot-ensure)
+         (markdown-mode   . eglot-ensure)
+         (js-mode         . eglot-ensure)
+         (python-mode     . eglot-ensure))
+  :config
+  (add-to-list 'eglot-server-programs '(markdown-mode . ("marksman")))
+  (setq eglot-autoshutdown t))
+
 ;; ── Savehist ── persist minibuffer history across sessions ─────────
 (savehist-mode)
 (custom-set-variables
@@ -94,8 +122,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(consult embark embark-consult evil magit marginalia orderless
-	     projectile vertico)))
+   '(consult embark embark-consult elixir-mode evil go-mode magit marginalia
+             markdown-mode orderless projectile typescript-mode use-package
+             vertico which-key)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
