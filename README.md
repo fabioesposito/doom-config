@@ -1,6 +1,37 @@
-# Doom Emacs config
+# Emacs config
 
-Migrated from Neovim (lazy.nvim + catppuccin). Evil (vim) keybindings throughout.
+Evil (vim) keybindings throughout. Two setups available:
+
+- **Vanilla** (`init.el`) — standalone Emacs config with `use-package`
+- **Doom** (`config.el` + `packages.el`) — Doom Emacs config (legacy)
+
+## Install
+
+### Vanilla (recommended)
+
+Requires Emacs 29+.
+
+```bash
+git clone https://github.com/fabioesposito/doom-config.git ~/.emacs.d
+```
+
+Launch Emacs — packages install automatically on first start via `use-package`.
+
+### Doom (legacy)
+
+```bash
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
+~/.emacs.d/bin/doom install
+
+git clone https://github.com/fabioesposito/doom-config.git ~/.config/doom
+~/.emacs.d/bin/doom sync
+```
+
+---
+
+## Vanilla config (init.el)
+
+Migrated from Neovim (lazy.nvim + catppuccin).
 
 ## What's enabled
 
