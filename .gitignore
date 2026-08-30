@@ -1,0 +1,10 @@
+# Native compilation cache
+eln-cache/
+
+# Package archives
+elpa/
+
+# Saved data
+history
+projectile-bookmarks.eld
+projectile-frecency.eld
